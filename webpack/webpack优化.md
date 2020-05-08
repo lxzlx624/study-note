@@ -1,14 +1,14 @@
-​	webpack优化是为了加快项目的构建速度、发布后用户的体验。以之前实习参与的的一个项目的来做优化实验。
+	webpack优化是为了加快项目的构建速度、发布后用户的体验。以之前实习参与的的一个项目的来做优化实验。
 
 #### 		1、UglifyJsPlugin
 
 uglifyjs是用来压缩js代码的插件，是最常用的插件之一。`node` 版本>=6.9.0，`webpack`版本>=v4.0.0。之前为`webpack.optimize.UglifyJsPlugin`。
 
-![image-20200508164629199](C:\Users\29443\AppData\Roaming\Typora\typora-user-images\image-20200508164629199.png)
+![](./asserts/image/image-20200508164629199.png)
 
 没使用uglifyjs之前，可以看到app.js文件大小达到了7.72MB。使用uglifyjs进行js代码压缩，结果如下：
 
-![image-20200508164911797](C:\Users\29443\AppData\Roaming\Typora\typora-user-images\image-20200508164911797.png)
+![image-20200508164911797](./asserts/image/image-20200508164911797.png)
 
 虽然构建时间大大增加了，但是app.js的体积也大大减少了，有利于发布后，用户的加载速度。
 
@@ -18,7 +18,7 @@ uglifyjs是用来压缩js代码的插件，是最常用的插件之一。`node` 
 
 ​		`new ExtractTextPlugin({filename: utils.assetsPath('css/[name].[contenthash].css'), allChunks: true}),`
 
-![image-20200508165953846](C:\Users\29443\AppData\Roaming\Typora\typora-user-images\image-20200508165953846.png)
+![image-20200508165953846](./asserts/image/image-20200508165953846.png)
 
 可以看到css被单独分离出来了，打开index.html可以看到css标签在head标签之中。
 
@@ -39,7 +39,7 @@ new webpack.optimize.CommonsChunkPlugin({
 }),
 ```
 
-![image-20200508171140587](C:\Users\29443\AppData\Roaming\Typora\typora-user-images\image-20200508171140587.png)
+![image-20200508171140587](./asserts/image/image-20200508171140587.png)
 
 依赖包代码和业务代码已经分离出来。业务代码大小以及降到了1.3M。
 
@@ -66,7 +66,7 @@ new CompressionWebpackPlugin({
 })
 ```
 
-![image-20200508173143676](C:\Users\29443\AppData\Roaming\Typora\typora-user-images\image-20200508173143676.png)
+![image-20200508173143676](./asserts/image/image-20200508173143676.png)
 
 可以看到，业务代码已经压缩到了325kB。gzip需要对nginx进行相应的配置
 
